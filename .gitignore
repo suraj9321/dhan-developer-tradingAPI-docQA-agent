@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+data/raw/
+data/processed/
+models/
+.cache/
+qdrant_storage/
+eval/results/runs/
+.DS_Store

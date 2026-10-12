@@ -1,0 +1,10 @@
+.venv
+.cache
+models
+eval
+tests
+.git
+qdrant_storage
+*.md
+!README.md
+.env

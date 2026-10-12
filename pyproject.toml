@@ -37,3 +37,12 @@ packages = ["docsqa"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+
+# Linux (the Docker image) gets CPU-only torch; macOS keeps the default wheel with MPS.
+[tool.uv.sources]
+torch = [{ index = "pytorch-cpu", marker = "sys_platform == 'linux'" }]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true

@@ -1,3 +1,8 @@
+# docker compose up --build
+#   qdrant  vector store (persistent volume)
+#   indexer one-shot: parse -> chunk -> embed -> load Qdrant, then exits
+#   api     FastAPI /ask on :8000
+#   ui      Streamlit demo on :8501
 services:
   qdrant:
     image: qdrant/qdrant:v1.19.2
@@ -10,6 +15,44 @@ services:
       interval: 5s
       timeout: 3s
       retries: 20
+
+  indexer:
+    build: .
+    image: docsqa:latest
+    command: ["python", "-m", "scripts.build_index", "--chunk", "500"]
+    environment:
+      QDRANT_URL: http://qdrant:6333
+    volumes:
+      - ./data:/app/data
+    depends_on:
+      qdrant:
+        condition: service_healthy
+
+  api:
+    build: .
+    image: docsqa:latest
+    env_file: .env
+    environment:
+      QDRANT_URL: http://qdrant:6333
+      DOCSQA_SYSTEM: agent
+    volumes:
+      - ./data:/app/data
+    ports:
+      - "8000:8000"
+    depends_on:
+      indexer:
+        condition: service_completed_successfully
+
+  ui:
+    build: .
+    image: docsqa:latest
+    command: ["streamlit", "run", "app/streamlit_app.py", "--server.address", "0.0.0.0", "--server.port", "8501"]
+    environment:
+      DOCSQA_API: http://api:8000
+    ports:
+      - "8501:8501"
+    depends_on:
+      - api
 
 volumes:
   qdrant_storage:

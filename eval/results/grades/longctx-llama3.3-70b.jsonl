@@ -1,0 +1,150 @@
+{"qid": "q0030", "correct": 0, "faithful": 0, "reason": "omits the tool name historical_data_agent_tool and cites nothing"}
+{"qid": "q0154", "correct": 1, "faithful": 0, "reason": "status 200 correct but lists a 'margin available' field absent from the cited excerpt"}
+{"qid": "q0204", "correct": 0, "faithful": 0, "reason": "generic platform overview; never gives the trade history endpoint"}
+{"qid": "q0042", "correct": 1, "faithful": 0, "reason": "core facts (Greeks, OI, NSE) right but cites unrelated Ledger Report and Annexure sections"}
+{"qid": "q0103", "correct": 0, "faithful": 1, "reason": "says the default is not specified; misses the 1-year default"}
+{"qid": "q0128", "correct": 1, "faithful": 0, "reason": "805 is correct but the cited Global Stocks section does not state it"}
+{"qid": "q0209", "correct": 1, "faithful": 0, "reason": "correct slicing endpoint but cites the Calculate Margin section"}
+{"qid": "q0217", "correct": 0, "faithful": 0, "reason": "Order Update payload fields given are order-book fields, not OrderNo/ExchOrderNo/Status; unsupported"}
+{"qid": "q0150", "correct": 1, "faithful": 0, "reason": "dhan.SELL correct but no citations"}
+{"qid": "q0131", "correct": 0, "faithful": 0, "reason": "wrongly says the modify call needs no static IP; cites unrelated sections"}
+{"qid": "q0063", "correct": 1, "faithful": 0, "reason": "POST /killswitch correct but cited sections do not state it"}
+{"qid": "q0111", "correct": 1, "faithful": 0, "reason": "10s ping and 40s timeout correct but no citations"}
+{"qid": "q0192", "correct": 1, "faithful": 0, "reason": "three factors correct but the cited Use Cases section does not list them"}
+{"qid": "q0121", "correct": 0, "faithful": 0, "reason": "adds MODIFIED, TRIGGERED, INACTIVE which are not Postback orderStatus values"}
+{"qid": "q0170", "correct": 0, "faithful": 0, "reason": "generic platform overview; no estimate or modify endpoints"}
+{"qid": "q0125", "correct": 1, "faithful": 1, "reason": "POST /charts/rollingoption, supported by the cited guide"}
+{"qid": "q0139", "correct": 0, "faithful": 0, "reason": "generic overview; no tool name or intervals"}
+{"qid": "q0064", "correct": 1, "faithful": 1, "reason": "0 for market orders, USD, supported by the cited Global Stocks excerpt"}
+{"qid": "q0007", "correct": 1, "faithful": 0, "reason": "~300 lines and contents correct but cites Calculate Margin"}
+{"qid": "q0070", "correct": 0, "faithful": 0, "reason": "says 1000 instruments per message; docs say 100"}
+{"qid": "q0021", "correct": 1, "faithful": 1, "reason": "request code 23, supported by the cited Full Market Depth excerpt"}
+{"qid": "q0124", "correct": 0, "faithful": 0, "reason": "generic overview; never answers OPEN_30 timing"}
+{"qid": "q0182", "correct": 1, "faithful": 0, "reason": "60 seconds correct but the cited SDK Historical Data section does not contain the loop"}
+{"qid": "q0140", "correct": 0, "faithful": 0, "reason": "generic overview; no newsheadline endpoint"}
+{"qid": "q0052", "correct": 1, "faithful": 0, "reason": "marker correct but the cited guardrails table does not contain it"}
+{"qid": "q0027", "correct": 0, "faithful": 0, "reason": "points to the Authentication pages instead of Agent Skills > Configuration"}
+{"qid": "q0060", "correct": 1, "faithful": 0, "reason": "/data/technical correct but cites Company Info and Ledger Report"}
+{"qid": "q0098", "correct": 0, "faithful": 0, "reason": "says DAY instead of D; no citations"}
+{"qid": "q0013", "correct": 1, "faithful": 0, "reason": "/charts/intraday via POST correct but the cited sections do not state it"}
+{"qid": "q0127", "correct": 1, "faithful": 0, "reason": "holdings, positions, trade history correct but cites unrelated sections"}
+{"qid": "q0001", "correct": 1, "faithful": 0, "reason": "1-year default correct but the cited Annexure section does not state it"}
+{"qid": "q0203", "correct": 1, "faithful": 0, "reason": "leg counts and views correct; iron condor leg composition wrong and unsupported"}
+{"qid": "q0090", "correct": 1, "faithful": 0, "reason": "correct DELETE endpoint and order-id but no citations"}
+{"qid": "q0057", "correct": 1, "faithful": 1, "reason": "Versions tab and Save as new version, supported by the cited Dhan Cloud excerpts"}
+{"qid": "q0195", "correct": 0, "faithful": 0, "reason": "generic platform overview; never names STOP_LOSS_MARKET"}
+{"qid": "q0055", "correct": 1, "faithful": 0, "reason": "5 levels correct but the cited Full Market Depth section does not state it"}
+{"qid": "q0076", "correct": 0, "faithful": 0, "reason": "generic platform overview; never gives code 50"}
+{"qid": "q0023", "correct": 0, "faithful": 0, "reason": "points to the REST Annexure instead of the Dhan MCP Supported conditions page"}
+{"qid": "q0134", "correct": 0, "faithful": 0, "reason": "adds NA, which is not an allowed order-leg value"}
+{"qid": "q0101", "correct": 0, "faithful": 0, "reason": "wrongly claims the P&L exit and order book productType values are the same"}
+{"qid": "q0046", "correct": 1, "faithful": 0, "reason": "endpoint and date format correct but no citations"}
+{"qid": "q0050", "correct": 0, "faithful": 0, "reason": "generic platform overview; never gives Streamable HTTP"}
+{"qid": "q0206", "correct": 0, "faithful": 0, "reason": "generic platform overview; does not answer either part"}
+{"qid": "q0085", "correct": 1, "faithful": 0, "reason": "confirms Cursor works and gives a super order prompt but cites nothing"}
+{"qid": "q0197", "correct": 0, "faithful": 0, "reason": "generic platform overview; no deployment steps"}
+{"qid": "q0174", "correct": 0, "faithful": 0, "reason": "names a Multi-Order workflow instead of Parameterized templates"}
+{"qid": "q0089", "correct": 0, "faithful": 0, "reason": "says lastPrice is a float; docs say string"}
+{"qid": "q0011", "correct": 1, "faithful": 0, "reason": "25 modifications per order correct but the cited Ledger Report does not state it"}
+{"qid": "q0108", "correct": 0, "faithful": 0, "reason": "wrong offsets and type (float32 at 8-11 vs float64 at 25-32)"}
+{"qid": "q0207", "correct": 1, "faithful": 0, "reason": "Firebase and Supabase correct but the cited Dependencies section does not mention them"}
+{"qid": "q0100", "correct": 1, "faithful": 1, "reason": "correct DELETE endpoint and Live Feed WebSocket, both supported by the cited Global Stocks excerpts"}
+{"qid": "q0002", "correct": 1, "faithful": 0, "reason": "security_id/exchange_segment with 1333/NSE_EQ correct but no citations"}
+{"qid": "q0178", "correct": 1, "faithful": 0, "reason": "availabelBalance correct but cites Calculate Margin"}
+{"qid": "q0147", "correct": 1, "faithful": 1, "reason": "correct source repo; supported, though it cites 300+ excerpts indiscriminately"}
+{"qid": "q0014", "correct": 0, "faithful": 0, "reason": "remaining qty 4 correct but lists invalid statuses (PART_TRADED, MODIFIED, TRIGGERED, INACTIVE)"}
+{"qid": "q0133", "correct": 0, "faithful": 0, "reason": "wrong security id 11536 instead of 1333"}
+{"qid": "q0137", "correct": 1, "faithful": 0, "reason": "correct npx command but none of the 40 cited sections contain it"}
+{"qid": "q0188", "correct": 0, "faithful": 0, "reason": "generic platform overview; no rollback answer"}
+{"qid": "q0107", "correct": 1, "faithful": 0, "reason": "default and segments correct but the cited Annexure section does not list them"}
+{"qid": "q0148", "correct": 0, "faithful": 0, "reason": "describes margin calculators instead of naming MCP"}
+{"qid": "q0105", "correct": 1, "faithful": 0, "reason": "generateAccessToken endpoint correct but cites Calculate Margin"}
+{"qid": "q0198", "correct": 0, "faithful": 0, "reason": "gives GET /v2/trades (today's trade book) instead of trade history; statuses unsupported by cited excerpts"}
+{"qid": "q0032", "correct": 1, "faithful": 0, "reason": "POST /orders/slicing correct but cites Cancel Order"}
+{"qid": "q0020", "correct": 0, "faithful": 0, "reason": "gives ErrCode 807 instead of 808; cited sections unrelated"}
+{"qid": "q0043", "correct": 0, "faithful": 0, "reason": "generic platform overview; no backtesting skill"}
+{"qid": "q0135", "correct": 0, "faithful": 0, "reason": "degenerate repetition of Calculate Margin parameters; no answer"}
+{"qid": "q0082", "correct": 1, "faithful": 0, "reason": "DELETE /positions is the documented exit-all endpoint but the cited Super Order section does not state it"}
+{"qid": "q0087", "correct": 0, "faithful": 0, "reason": "generic platform overview; never names MARGIN"}
+{"qid": "q0048", "correct": 1, "faithful": 1, "reason": "place/modify/cancel including Super Orders, supported by cited MCP Trading excerpt"}
+{"qid": "q0126", "correct": 0, "faithful": 0, "reason": "dumps excerpt text; never answers the error category question"}
+{"qid": "q0151", "correct": 1, "faithful": 1, "reason": "POST /margincalculator, supported"}
+{"qid": "q0010", "correct": 0, "faithful": 0, "reason": "says string; docs say float"}
+{"qid": "q0173", "correct": 1, "faithful": 1, "reason": "alertId and alertStatus ACTIVE, supported by cited Modify Conditional Order excerpt"}
+{"qid": "q0039", "correct": 1, "faithful": 1, "reason": "lot-size validation, supported"}
+{"qid": "q0054", "correct": 1, "faithful": 1, "reason": "GET /ledger, supported by cited Statements and Ledger Report excerpts"}
+{"qid": "q0016", "correct": 0, "faithful": 0, "reason": "generic platform overview; no ScanX or Portfolio metrics"}
+{"qid": "q0040", "correct": 1, "faithful": 0, "reason": "GET /pnlExit correct but cites Cancel Order and Ledger Report"}
+{"qid": "q0017", "correct": 1, "faithful": 1, "reason": "cites the Code Scanner Risk Levels page, though only by number"}
+{"qid": "q0143", "correct": 1, "faithful": 0, "reason": "fetch_with_retry correct but wrongly attributes it to the MCP docs"}
+{"qid": "q0205", "correct": 1, "faithful": 0, "reason": "GTT prompt correct but cites an unrelated section"}
+{"qid": "q0213", "correct": 0, "faithful": 0, "reason": "opcode and byte order right but no stepping rule (MsgLength, break on 0); no citations"}
+{"qid": "q0144", "correct": 1, "faithful": 0, "reason": "/ledger correct but cites EDIS"}
+{"qid": "q0058", "correct": 0, "faithful": 0, "reason": "says INTRADAY and CNC instead of MIS and CNC/NRML"}
+{"qid": "q0109", "correct": 1, "faithful": 0, "reason": "POST and DELETE /pnlExit correct but cites Calculate Margin"}
+{"qid": "q0072", "correct": 0, "faithful": 0, "reason": "generic platform overview; no answer"}
+{"qid": "q0158", "correct": 1, "faithful": 1, "reason": "/ledger, supported by the cited Ledger Report"}
+{"qid": "q0079", "correct": 0, "faithful": 0, "reason": "generic platform overview; no exchanges or search keys"}
+{"qid": "q0086", "correct": 1, "faithful": 1, "reason": "access-token required, supported (citation spam)"}
+{"qid": "q0212", "correct": 0, "faithful": 0, "reason": "adds statuses not in the Cancel Order enum (PART_TRADED, EXPIRED, MODIFIED, ...)"}
+{"qid": "q0009", "correct": 0, "faithful": 0, "reason": "generic platform overview; no MCP to DEXT to exchange flow"}
+{"qid": "q0162", "correct": 0, "faithful": 0, "reason": "wrong plan and invents request code 23 for CAS"}
+{"qid": "q0029", "correct": 1, "faithful": 1, "reason": "rollingoption with 30 days per call, supported"}
+{"qid": "q0015", "correct": 0, "faithful": 0, "reason": "adds MODIFIED, TRIGGERED, INACTIVE to Postback statuses"}
+{"qid": "q0159", "correct": 1, "faithful": 0, "reason": "Claude Code correct but the cited Version 2.4 notes do not say it"}
+{"qid": "q0091", "correct": 0, "faithful": 0, "reason": "dumps Calculate Margin excerpt; no answer"}
+{"qid": "q0201", "correct": 1, "faithful": 1, "reason": "getIP, supported"}
+{"qid": "q0025", "correct": 0, "faithful": 0, "reason": "generic platform overview; never names portfolio_agent_tool"}
+{"qid": "q0202", "correct": 0, "faithful": 0, "reason": "generic platform overview; no command"}
+{"qid": "q0024", "correct": 1, "faithful": 0, "reason": "POST /orders correct but the cited sections do not state it"}
+{"qid": "q0045", "correct": 1, "faithful": 1, "reason": "/charts/intraday and /charts/historical, supported"}
+{"qid": "q0075", "correct": 1, "faithful": 0, "reason": "Market Data skill and instrument types correct but cites unrelated sections"}
+{"qid": "q0156", "correct": 0, "faithful": 1, "reason": "gives PUT and a docs page link but never the /alerts/orders/{alertId} path"}
+{"qid": "q0112", "correct": 0, "faithful": 0, "reason": "generic platform overview; no directory or package"}
+{"qid": "q0166", "correct": 1, "faithful": 0, "reason": "1000 instruments and 1 req/s correct; adds an unsupported 1000 requests/day limit"}
+{"qid": "q0004", "correct": 1, "faithful": 1, "reason": "DELETE /pnlExit, supported"}
+{"qid": "q0185", "correct": 0, "faithful": 1, "reason": "describes managed infrastructure but never names the Zero infrastructure feature"}
+{"qid": "q0165", "correct": 1, "faithful": 0, "reason": "/charts/historical correct but cited sections do not state it"}
+{"qid": "q0230", "correct": 0, "faithful": 0, "reason": "names intraday_minute_data instead of the Python SDK's get_intraday_data"}
+{"qid": "q0005", "correct": 1, "faithful": 0, "reason": "both option chain limits correct but no citations"}
+{"qid": "q0083", "correct": 1, "faithful": 0, "reason": "USD and float correct but no citations"}
+{"qid": "q0222", "correct": 0, "faithful": 0, "reason": "generic platform overview; no answer"}
+{"qid": "q0028", "correct": 1, "faithful": 0, "reason": "GET /trades/{order-id} correct but the cited sections do not contain it"}
+{"qid": "q0065", "correct": 0, "faithful": 0, "reason": "generic platform overview; no endpoint"}
+{"qid": "q0096", "correct": 1, "faithful": 0, "reason": "NSE, BSE, MCX correct but the cited Annexure tables do not describe the Instruments skill"}
+{"qid": "q0181", "correct": 1, "faithful": 0, "reason": "dumps the header table; gives No of Rows for 200-level and notes 20-level differs; no citations"}
+{"qid": "q0080", "correct": 0, "faithful": 0, "reason": "generic platform overview; never names portfolio_agent_tool"}
+{"qid": "q0155", "correct": 1, "faithful": 0, "reason": "isolated Python container correct but the cited section does not state it"}
+{"qid": "q0199", "correct": 0, "faithful": 0, "reason": "names the Live Market Feed API guide, not the Live Feed agent skill"}
+{"qid": "q0018", "correct": 0, "faithful": 0, "reason": "generic platform overview; no answer"}
+{"qid": "q0088", "correct": 1, "faithful": 1, "reason": "values and CNC default, supported"}
+{"qid": "q0164", "correct": 0, "faithful": 0, "reason": "says every 2 minutes; docs say 30 seconds"}
+{"qid": "q0231", "correct": 1, "faithful": 0, "reason": "200 correct but cites an unrelated section"}
+{"qid": "q0216", "correct": 1, "faithful": 0, "reason": "dhanhq correct but the cited sections do not contain it"}
+{"qid": "q0183", "correct": 1, "faithful": 0, "reason": "Super Order correct but the cited excerpts do not state all-exchange availability"}
+{"qid": "q0189", "correct": 0, "faithful": 0, "reason": "gives 2.0.1 instead of 2.2.0; no citations"}
+{"qid": "q0094", "correct": 1, "faithful": 1, "reason": "DELETE /positions, supported by the cited Exit All Positions excerpt"}
+{"qid": "q0026", "correct": 0, "faithful": 0, "reason": "names API key/secret instead of TOTP; adds irrelevant kill-switch claims"}
+{"qid": "q0093", "correct": 1, "faithful": 0, "reason": "values correct but cites Cancel Order and Ledger Report"}
+{"qid": "q0136", "correct": 1, "faithful": 0, "reason": "tokenId correct but cites an unrelated section"}
+{"qid": "q0110", "correct": 0, "faithful": 0, "reason": "gives REST camelCase fields, not the Python SDK convert_position call"}
+{"qid": "q0041", "correct": 0, "faithful": 0, "reason": "says 30 days; the rolling options page documents 45"}
+{"qid": "q0163", "correct": 1, "faithful": 0, "reason": "blocked and use Variables correct but cites unrelated sections"}
+{"qid": "q0226", "correct": 1, "faithful": 1, "reason": "tokenId used to generate the access token, supported"}
+{"qid": "q0132", "correct": 1, "faithful": 0, "reason": "cause and no-static-IP correct; ACCESS_TOKEN guidance not in cited excerpts"}
+{"qid": "q0037", "correct": 0, "faithful": 0, "reason": "lists ten statuses; the endpoint enum has five"}
+{"qid": "q0219", "correct": 1, "faithful": 1, "reason": "Compute Tiers page, supported"}
+{"qid": "q0012", "correct": 1, "faithful": 0, "reason": "POST /v2/globalstocks/orders correct but cites Funds & Margin"}
+{"qid": "q0113", "correct": 0, "faithful": 0, "reason": "gives /charts/historical (daily) for minute candles"}
+{"qid": "q0000", "correct": 1, "faithful": 0, "reason": "Global Stocks Live Feed, WebSocket, opcode 2 correct but no citations"}
+{"qid": "q0104", "correct": 0, "faithful": 0, "reason": "misquotes the sample prompt (intraday to delivery vs MIS to NRML); wrong citations"}
+{"qid": "q0123", "correct": 1, "faithful": 0, "reason": "mcp.dhan.co correct but none of the cited sections contain it"}
+{"qid": "q0186", "correct": 1, "faithful": 0, "reason": "PUT endpoint and orderId source correct but cited sections do not state the PUT path"}
+{"qid": "q0214", "correct": 1, "faithful": 1, "reason": "order confirmation guardrail, supported"}
+{"qid": "q0179", "correct": 0, "faithful": 0, "reason": "byte position right but misidentifies the field as response codes 41/51; no citations"}
+{"qid": "q0187", "correct": 0, "faithful": 0, "reason": "example JSON uses RequestCode/InstrumentList casing from the Indian feed, not the Global Stocks keys"}
+{"qid": "q0051", "correct": 1, "faithful": 1, "reason": "SELF and PARTNER, supported"}
+{"qid": "q0153", "correct": 0, "faithful": 1, "reason": "says the endpoint is not in the excerpts; misses marketstatus"}
+{"qid": "q0190", "correct": 0, "faithful": 0, "reason": "generic platform overview; never names references/portfolio.md"}
+{"qid": "q0062", "correct": 1, "faithful": 0, "reason": "13 bytes and MsgCode 50 correct but the cited Keeping Connection Alive section does not state them"}
+{"qid": "q0191", "correct": 0, "faithful": 0, "reason": "says Safety Guardrails instead of Safety rule adherence"}

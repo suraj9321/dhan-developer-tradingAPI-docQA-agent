@@ -1,0 +1,109 @@
+{
+  "run": "baseline",
+  "n": 145,
+  "correct": {
+    "agreement": 0.972,
+    "kappa": 0.86,
+    "judge_rate": 0.876,
+    "offline_rate": 0.903,
+    "confusion(judge,offline)": {
+      "00": 14,
+      "01": 4,
+      "11": 127
+    }
+  },
+  "faithful": {
+    "agreement": 0.959,
+    "kappa": 0.605,
+    "judge_rate": 0.931,
+    "offline_rate": 0.959,
+    "confusion(judge,offline)": {
+      "00": 5,
+      "01": 5,
+      "10": 1,
+      "11": 134
+    }
+  },
+  "disagreements": [
+    {
+      "qid": "q0026",
+      "dim": "faithful",
+      "judge": 0,
+      "offline": 1,
+      "judge_reason": "The answer names an access token as step 1 instead of TOTP setup, so it misses the OTP-free login step; its claim that the access token is required is only loosely supported by the example request, and 'not explicitly described' is hedged.",
+      "offline_reason": "Covers static IP but omits TOTP setup for OTP-free login."
+    },
+    {
+      "qid": "q0029",
+      "dim": "correct",
+      "judge": 0,
+      "offline": 1,
+      "judge_reason": "The endpoint is correct, but the answer gives two conflicting date spans (45 and 30 days) instead of committing to 30, so the core fact is not stated; both claims appear in the cited excerpts, so it is faithful.",
+      "offline_reason": "Right endpoint; reports both the 45- and 30-day figures the excerpts give, including the reference's 30."
+    },
+    {
+      "qid": "q0041",
+      "dim": "correct",
+      "judge": 0,
+      "offline": 1,
+      "judge_reason": "The endpoint is right, but the answer hedges between 45 and 30 days instead of committing to the documented 45, so the key fact is ambiguous; every claim it makes is supported by the excerpts (45 days in [2], 30 days in [5]).",
+      "offline_reason": "rollingoption endpoint; 45 days for the Indian API (notes the guide's 30)."
+    },
+    {
+      "qid": "q0072",
+      "dim": "faithful",
+      "judge": 0,
+      "offline": 1,
+      "judge_reason": "The answer gives 320 bytes instead of 332 (it omits the 12-byte header) and says the ping-timeout behavior is undocumented, so it misses the 40-second disconnect; the 320 figure is also a misreading of the excerpt, where the full section is bytes 0-331.",
+      "offline_reason": "Gives 320 bytes excluding the 12-byte header, and abstains on the ping/timeout behaviour."
+    },
+    {
+      "qid": "q0101",
+      "dim": "faithful",
+      "judge": 1,
+      "offline": 0,
+      "judge_reason": "The answer omits GET /v2/orders and the order book productType values (CNC, INTRADAY, MARGIN, MTF), so it misses core facts, but every claim it makes is supported by the excerpts.",
+      "offline_reason": "Abstains on the order-book endpoint and the comparison; generalises the access-token requirement beyond the excerpts."
+    },
+    {
+      "qid": "q0111",
+      "dim": "correct",
+      "judge": 0,
+      "offline": 1,
+      "judge_reason": "The answer mixes in the Global Stocks '4 consecutive pings' rule, which is the wrong API for Live Market Feed, so the 40-second answer is muddied; it is also unfaithful because the 'approximately' wording and the 4-ping rule come from the Global Stocks excerpt and are wrongly attributed to Live Market Feed.",
+      "offline_reason": "10s/40s are correct, but the 4-missed-pings rule comes from the Global Stocks feed and is misattributed."
+    },
+    {
+      "qid": "q0186",
+      "dim": "faithful",
+      "judge": 0,
+      "offline": 1,
+      "judge_reason": "The endpoint and method are correct and the order ID source is right in substance, but the excerpts never say the order ID comes from the place-order response, and cite [1] for it.",
+      "offline_reason": "PUT /globalstocks/orders/{order-id}; ID from the place-order response (given in the question)."
+    },
+    {
+      "qid": "q0198",
+      "dim": "faithful",
+      "judge": 0,
+      "offline": 1,
+      "judge_reason": "The answer lists only CANCELLED instead of all four alertStatus values (ACTIVE, TRIGGERED, EXPIRED, CANCELLED) and does not name the trade history endpoint GET /trades/{from}/{to}/{page}. It also says CANCELLED is the only possible value, which the excerpt's enum list contradicts, so that claim is unsupported.",
+      "offline_reason": "Lists only CANCELLED rather than all four statuses, and abstains on the trade-history endpoint."
+    },
+    {
+      "qid": "q0219",
+      "dim": "correct",
+      "judge": 0,
+      "offline": 1,
+      "judge_reason": "The answer leads with the Settings section as the place to see specs and pricing and only mentions Compute Tiers secondarily, and the excerpts don't support the claim that Settings shows specs and pricing as the primary answer.",
+      "offline_reason": "Settings section per the tier note, and points to the Compute Tiers page."
+    },
+    {
+      "qid": "q0219",
+      "dim": "faithful",
+      "judge": 0,
+      "offline": 1,
+      "judge_reason": "The answer leads with the Settings section as the place to see specs and pricing and only mentions Compute Tiers secondarily, and the excerpts don't support the claim that Settings shows specs and pricing as the primary answer.",
+      "offline_reason": "Settings section per the tier note, and points to the Compute Tiers page."
+    }
+  ]
+}

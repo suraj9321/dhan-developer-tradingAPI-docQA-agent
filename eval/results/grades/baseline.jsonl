@@ -1,0 +1,145 @@
+{"qid": "q0030", "correct": 1, "faithful": 1, "reason": "Names the tool and all five intervals, as in the excerpt."}
+{"qid": "q0154", "correct": 1, "faithful": 1, "reason": "Status 200 with fund limit details, matching the excerpt."}
+{"qid": "q0204", "correct": 0, "faithful": 1, "reason": "Right endpoint, but does not say page-number is an integer defaulting to 0."}
+{"qid": "q0042", "correct": 1, "faithful": 1, "reason": "Greeks/OI/IV on NSE, all supported by the skill excerpts."}
+{"qid": "q0103", "correct": 1, "faithful": 1, "reason": "Default expiry of 1 year, as in the parameter table."}
+{"qid": "q0128", "correct": 1, "faithful": 1, "reason": "Code 805, as in the excerpt."}
+{"qid": "q0209", "correct": 1, "faithful": 1, "reason": "POST /v2/orders/slicing, supported."}
+{"qid": "q0217", "correct": 1, "faithful": 1, "reason": "Contrasts WebSocket vs POST webhook and lists payload fields from the given excerpts."}
+{"qid": "q0150", "correct": 1, "faithful": 1, "reason": "dhan.SELL, per the mapping table."}
+{"qid": "q0131", "correct": 1, "faithful": 1, "reason": "LTP endpoint, 1000 instruments, 1 req/s, static IP for modify; all supported."}
+{"qid": "q0111", "correct": 1, "faithful": 0, "reason": "10s/40s are correct, but the 4-missed-pings rule comes from the Global Stocks feed and is misattributed."}
+{"qid": "q0192", "correct": 1, "faithful": 1, "reason": "Slippage, impact cost, execution delays."}
+{"qid": "q0121", "correct": 1, "faithful": 1, "reason": "All six enum values, as in the excerpt."}
+{"qid": "q0170", "correct": 1, "faithful": 0, "reason": "Right endpoints and values, but the excerpts show only an example body; nothing says quantity/price are required."}
+{"qid": "q0125", "correct": 1, "faithful": 1, "reason": "POST /charts/rollingoption."}
+{"qid": "q0139", "correct": 1, "faithful": 1, "reason": "Names the tool and its intervals."}
+{"qid": "q0064", "correct": 1, "faithful": 1, "reason": "0 for market orders, in USD."}
+{"qid": "q0007", "correct": 1, "faithful": 1, "reason": "~300 lines with setup, safety, constants, patterns; supported."}
+{"qid": "q0070", "correct": 1, "faithful": 1, "reason": "100 instruments, RequestCode 15."}
+{"qid": "q0021", "correct": 1, "faithful": 1, "reason": "Request code 23."}
+{"qid": "q0124", "correct": 1, "faithful": 1, "reason": "30 minutes after market open."}
+{"qid": "q0182", "correct": 1, "faithful": 1, "reason": "time.sleep(60)."}
+{"qid": "q0140", "correct": 1, "faithful": 1, "reason": "POST /v2/data/newsheadline."}
+{"qid": "q0052", "correct": 1, "faithful": 1, "reason": "\u26a0\ufe0f SAFETY blocks."}
+{"qid": "q0027", "correct": 1, "faithful": 1, "reason": "Agent Skills > Configuration."}
+{"qid": "q0060", "correct": 1, "faithful": 1, "reason": "POST /v2/data/technical."}
+{"qid": "q0098", "correct": 1, "faithful": 1, "reason": "D, end-of-day daily candles."}
+{"qid": "q0013", "correct": 1, "faithful": 1, "reason": "POST /v2/charts/intraday."}
+{"qid": "q0127", "correct": 0, "faithful": 1, "reason": "Lists holdings and positions but omits trade history."}
+{"qid": "q0203", "correct": 1, "faithful": 1, "reason": "4 legs neutral; 2 legs moderately bullish."}
+{"qid": "q0090", "correct": 1, "faithful": 1, "reason": "DELETE /globalstocks/orders/{order-id} with the order-id path param."}
+{"qid": "q0057", "correct": 1, "faithful": 1, "reason": "Versions tab; Save as new version."}
+{"qid": "q0195", "correct": 1, "faithful": 1, "reason": "STOP_LOSS_MARKET."}
+{"qid": "q0055", "correct": 1, "faithful": 1, "reason": "Best 5 bid/ask."}
+{"qid": "q0076", "correct": 1, "faithful": 0, "reason": "Code 50 is right, but the 11-byte-header detail comes from the Global Stocks feed and is misattributed."}
+{"qid": "q0023", "correct": 1, "faithful": 1, "reason": "Dhan MCP > Supported conditions."}
+{"qid": "q0134", "correct": 1, "faithful": 1, "reason": "ENTRY_LEG/TARGET_LEG/STOP_LOSS_LEG, required."}
+{"qid": "q0101", "correct": 0, "faithful": 0, "reason": "Abstains on the order-book endpoint and the comparison; generalises the access-token requirement beyond the excerpts."}
+{"qid": "q0046", "correct": 1, "faithful": 1, "reason": "expirylist endpoint, YYYY-MM-DD."}
+{"qid": "q0050", "correct": 1, "faithful": 1, "reason": "Streamable HTTP."}
+{"qid": "q0206", "correct": 1, "faithful": 1, "reason": "STOP_LOSS_LEG is modifiable after entry is TRADED; 12 underlyings exceed the 10/8s cap."}
+{"qid": "q0085", "correct": 0, "faithful": 1, "reason": "Cursor compatibility is right, but it gives no documented example super-order prompt."}
+{"qid": "q0197", "correct": 1, "faithful": 1, "reason": "Deployment steps and fresh-install dependencies, all supported."}
+{"qid": "q0174", "correct": 1, "faithful": 1, "reason": "Parameterized templates."}
+{"qid": "q0089", "correct": 1, "faithful": 1, "reason": "string, \"245.50\"."}
+{"qid": "q0011", "correct": 1, "faithful": 1, "reason": "25 modifications per order."}
+{"qid": "q0108", "correct": 1, "faithful": 1, "reason": "float64 at bytes 25-32; length precedes code."}
+{"qid": "q0207", "correct": 1, "faithful": 1, "reason": "Firebase and Supabase."}
+{"qid": "q0100", "correct": 1, "faithful": 1, "reason": "DELETE endpoint plus Global Stocks Live Feed with codes 15/17."}
+{"qid": "q0002", "correct": 1, "faithful": 1, "reason": "security_id and exchange_segment with the example values."}
+{"qid": "q0178", "correct": 1, "faithful": 1, "reason": "availabelBalance."}
+{"qid": "q0147", "correct": 1, "faithful": 1, "reason": "github.com/dhan-oss/dhanhq-skills."}
+{"qid": "q0014", "correct": 1, "faithful": 1, "reason": "4 remaining; other statuses listed."}
+{"qid": "q0133", "correct": 1, "faithful": 1, "reason": "{\"NSE_EQ\": [1333]}."}
+{"qid": "q0137", "correct": 1, "faithful": 1, "reason": "Both zero-install commands."}
+{"qid": "q0188", "correct": 1, "faithful": 1, "reason": "Versions tab; restore replaces code and dependencies."}
+{"qid": "q0107", "correct": 1, "faithful": 1, "reason": "TECHNICAL_WITH_VALUE; NSE_EQ/BSE_EQ/IDX_I."}
+{"qid": "q0148", "correct": 1, "faithful": 1, "reason": "Model Context Protocol."}
+{"qid": "q0105", "correct": 1, "faithful": 1, "reason": "POST auth.dhan.co/app/generateAccessToken with dhanClientId/pin/totp."}
+{"qid": "q0198", "correct": 0, "faithful": 1, "reason": "Lists only CANCELLED rather than all four statuses, and abstains on the trade-history endpoint."}
+{"qid": "q0032", "correct": 1, "faithful": 1, "reason": "POST /v2/orders/slicing."}
+{"qid": "q0020", "correct": 1, "faithful": 1, "reason": "Error packet, MsgCode 50, 13 bytes, ErrCode 808."}
+{"qid": "q0043", "correct": 1, "faithful": 1, "reason": "Backtesting skill with the example prompt."}
+{"qid": "q0135", "correct": 1, "faithful": 1, "reason": "Agent Skills > Market Data > Supported Timeframes."}
+{"qid": "q0082", "correct": 1, "faithful": 1, "reason": "DELETE /v2/positions exits all positions and cancels open orders."}
+{"qid": "q0087", "correct": 0, "faithful": 0, "reason": "Says MTF; carry-forward F&O is MARGIN, and the excerpt doesn't support MTF."}
+{"qid": "q0048", "correct": 1, "faithful": 1, "reason": "View/place/modify/cancel including Super Orders."}
+{"qid": "q0151", "correct": 1, "faithful": 1, "reason": "Gives the Indian POST /v2/margincalculator, plus the Global Stocks variant."}
+{"qid": "q0010", "correct": 1, "faithful": 1, "reason": "float, not required."}
+{"qid": "q0173", "correct": 1, "faithful": 1, "reason": "alertId and alertStatus ACTIVE."}
+{"qid": "q0039", "correct": 1, "faithful": 1, "reason": "Lot size validation."}
+{"qid": "q0054", "correct": 1, "faithful": 1, "reason": "GET /ledger."}
+{"qid": "q0016", "correct": 1, "faithful": 1, "reason": "Portfolio metrics and the ScanX role, both supported."}
+{"qid": "q0040", "correct": 1, "faithful": 1, "reason": "GET /v2/pnlExit."}
+{"qid": "q0017", "correct": 1, "faithful": 1, "reason": "Code Scanner > Risk Levels."}
+{"qid": "q0143", "correct": 1, "faithful": 1, "reason": "fetch_with_retry."}
+{"qid": "q0205", "correct": 1, "faithful": 1, "reason": "Exact GTT example prompt."}
+{"qid": "q0213", "correct": 1, "faithful": 1, "reason": "Opcode 2, little-endian, MsgLength with SIZES fallback, guard zero."}
+{"qid": "q0144", "correct": 1, "faithful": 1, "reason": "GET /v2/ledger with from/to dates and running balance."}
+{"qid": "q0058", "correct": 1, "faithful": 1, "reason": "MIS to CNC/NRML."}
+{"qid": "q0109", "correct": 1, "faithful": 1, "reason": "POST to configure, DELETE to stop /pnlExit."}
+{"qid": "q0072", "correct": 0, "faithful": 1, "reason": "Gives 320 bytes excluding the 12-byte header, and abstains on the ping/timeout behaviour."}
+{"qid": "q0158", "correct": 1, "faithful": 1, "reason": "GET /v2/ledger with from-date/to-date."}
+{"qid": "q0079", "correct": 1, "faithful": 1, "reason": "NSE/BSE/MCX; name, symbol, ISIN."}
+{"qid": "q0086", "correct": 1, "faithful": 1, "reason": "access-token, required."}
+{"qid": "q0212", "correct": 1, "faithful": 1, "reason": "Five orderStatus values."}
+{"qid": "q0009", "correct": 1, "faithful": 1, "reason": "Full MCP flow to the exchange."}
+{"qid": "q0162", "correct": 0, "faithful": 1, "reason": "Gives the plan but abstains on the endpoint and parameters."}
+{"qid": "q0029", "correct": 1, "faithful": 1, "reason": "Right endpoint; reports both the 45- and 30-day figures the excerpts give, including the reference's 30."}
+{"qid": "q0015", "correct": 1, "faithful": 1, "reason": "Statuses and access-token scope."}
+{"qid": "q0091", "correct": 1, "faithful": 1, "reason": "Agent Skills section and the Skills CLI."}
+{"qid": "q0201", "correct": 1, "faithful": 1, "reason": "GET /v2/ip/getIP."}
+{"qid": "q0025", "correct": 1, "faithful": 1, "reason": "portfolio_agent_tool."}
+{"qid": "q0202", "correct": 1, "faithful": 1, "reason": "Exact command and auth steps."}
+{"qid": "q0024", "correct": 1, "faithful": 1, "reason": "POST /v2/orders (also notes the Global Stocks variant)."}
+{"qid": "q0045", "correct": 1, "faithful": 1, "reason": "/charts/intraday vs /charts/historical."}
+{"qid": "q0075", "correct": 1, "faithful": 1, "reason": "Market Data skill; instrument types."}
+{"qid": "q0156", "correct": 1, "faithful": 1, "reason": "PUT /alerts/orders/{alertId}."}
+{"qid": "q0112", "correct": 1, "faithful": 1, "reason": "skills/dhanhq/ and pip install dhanhq."}
+{"qid": "q0166", "correct": 1, "faithful": 1, "reason": "1000 instruments, 1 req/s."}
+{"qid": "q0004", "correct": 1, "faithful": 1, "reason": "DELETE /v2/pnlExit."}
+{"qid": "q0185", "correct": 0, "faithful": 1, "reason": "Describes managed infrastructure but never names the Zero infrastructure feature."}
+{"qid": "q0165", "correct": 1, "faithful": 1, "reason": "POST /v2/charts/historical."}
+{"qid": "q0230", "correct": 1, "faithful": 1, "reason": "get_intraday_data with security_id/segment/instrument_type and interval \"5\"."}
+{"qid": "q0005", "correct": 1, "faithful": 1, "reason": "Both option-chain limits."}
+{"qid": "q0083", "correct": 1, "faithful": 1, "reason": "USD, number<float>."}
+{"qid": "q0222", "correct": 1, "faithful": 1, "reason": "LIMIT default; lot-size warning and 25-unit offer."}
+{"qid": "q0028", "correct": 1, "faithful": 1, "reason": "GET /trades/{order-id}."}
+{"qid": "q0065", "correct": 1, "faithful": 1, "reason": "GET /v2/trades/{order-id}."}
+{"qid": "q0096", "correct": 0, "faithful": 1, "reason": "Omits MCX."}
+{"qid": "q0181", "correct": 1, "faithful": 1, "reason": "No of Rows vs Message Sequence."}
+{"qid": "q0080", "correct": 1, "faithful": 1, "reason": "portfolio_agent_tool."}
+{"qid": "q0155", "correct": 1, "faithful": 1, "reason": "Fresh environment in an isolated Python container."}
+{"qid": "q0199", "correct": 1, "faithful": 1, "reason": "Live Feed skill."}
+{"qid": "q0018", "correct": 0, "faithful": 1, "reason": "Points to the lot-size guardrail rather than the Instruments section."}
+{"qid": "q0088", "correct": 1, "faithful": 1, "reason": "CNC/INTRADAY/MARGIN/MTF, default CNC."}
+{"qid": "q0164", "correct": 1, "faithful": 1, "reason": "Every 30 seconds."}
+{"qid": "q0231", "correct": 1, "faithful": 1, "reason": "200, OHLC data."}
+{"qid": "q0216", "correct": 1, "faithful": 1, "reason": "dhanhq package."}
+{"qid": "q0183", "correct": 1, "faithful": 1, "reason": "Super Order, across segments and exchanges."}
+{"qid": "q0189", "correct": 1, "faithful": 1, "reason": "dhanhq, minimum version 2.2.0."}
+{"qid": "q0094", "correct": 1, "faithful": 1, "reason": "DELETE /v2/positions."}
+{"qid": "q0026", "correct": 0, "faithful": 1, "reason": "Covers static IP but omits TOTP setup for OTP-free login."}
+{"qid": "q0093", "correct": 1, "faithful": 1, "reason": "CNC/INTRADAY/MARGIN/MTF."}
+{"qid": "q0136", "correct": 1, "faithful": 1, "reason": "tokenId, used in Consume Consent to get the access token."}
+{"qid": "q0110", "correct": 1, "faithful": 1, "reason": "convert_position call with all parameters."}
+{"qid": "q0041", "correct": 1, "faithful": 1, "reason": "rollingoption endpoint; 45 days for the Indian API (notes the guide's 30)."}
+{"qid": "q0163", "correct": 1, "faithful": 1, "reason": "Blocked by the scanner; use {{VAR_NAME}}."}
+{"qid": "q0226", "correct": 1, "faithful": 1, "reason": "tokenId, used in Consume Consent."}
+{"qid": "q0132", "correct": 1, "faithful": 1, "reason": "Token expiry or Client ID mismatch; no static IP needed."}
+{"qid": "q0037", "correct": 1, "faithful": 1, "reason": "Five orderStatus values."}
+{"qid": "q0219", "correct": 1, "faithful": 1, "reason": "Settings section per the tier note, and points to the Compute Tiers page."}
+{"qid": "q0012", "correct": 1, "faithful": 1, "reason": "POST /v2/globalstocks/orders."}
+{"qid": "q0113", "correct": 1, "faithful": 1, "reason": "POST /v2/charts/intraday."}
+{"qid": "q0000", "correct": 1, "faithful": 1, "reason": "Global Stocks Live Feed, WebSocket, binary opcode 2."}
+{"qid": "q0104", "correct": 0, "faithful": 1, "reason": "Names references/portfolio.md but says no sample request exists."}
+{"qid": "q0123", "correct": 1, "faithful": 1, "reason": "mcp.dhan.co."}
+{"qid": "q0186", "correct": 1, "faithful": 1, "reason": "PUT /globalstocks/orders/{order-id}; ID from the place-order response (given in the question)."}
+{"qid": "q0214", "correct": 1, "faithful": 1, "reason": "Order Confirmation guardrail."}
+{"qid": "q0179", "correct": 1, "faithful": 1, "reason": "No of Rows, bytes 8-11, uint32."}
+{"qid": "q0187", "correct": 1, "faithful": 1, "reason": "Partner ID/secret, codes 15/17 and the request structure, all supported."}
+{"qid": "q0051", "correct": 1, "faithful": 1, "reason": "SELF and PARTNER."}
+{"qid": "q0153", "correct": 1, "faithful": 1, "reason": "GET /v2/globalstocks/marketstatus."}
+{"qid": "q0190", "correct": 0, "faithful": 0, "reason": "Points to SKILL.md instead of references/portfolio.md; the claim isn't supported by the excerpts."}
+{"qid": "q0062", "correct": 1, "faithful": 1, "reason": "13 bytes, MsgCode 50."}

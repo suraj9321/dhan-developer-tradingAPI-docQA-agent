@@ -22,7 +22,7 @@ from docsqa.llm import LLMClient
 from docsqa.retrieve import Retriever, RetrieverConfig
 
 System = Literal["baseline", "hybrid", "rerank", "agent"]
-DEFAULT_SYSTEM: System = os.environ.get("DOCSQA_SYSTEM", "baseline")  # type: ignore[assignment]
+DEFAULT_SYSTEM: System = os.environ.get("DOCSQA_SYSTEM", "agent")  # type: ignore[assignment]
 EMBED_MODEL = os.environ.get("DOCSQA_EMBED_MODEL", settings.embed_model)
 
 app = FastAPI(title="DocsQA", version="0.1.0")
@@ -66,7 +66,7 @@ def _llm() -> LLMClient:
 def _pipeline(system: str):
     from docsqa.rag import RAGPipeline
 
-    mode = {"baseline": "vector", "hybrid": "hybrid", "rerank": "rerank", "agent": "rerank"}[system]
+    mode = {"baseline": "vector", "hybrid": "hybrid", "rerank": "rerank", "agent": "hybrid"}[system]
     retriever = Retriever(RetrieverConfig(mode=mode, embed_model=EMBED_MODEL))
     if system == "agent":
         from docsqa.agent import AgentPipeline

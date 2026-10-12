@@ -47,7 +47,8 @@ class Usage:
     input_tokens: int = 0
     output_tokens: int = 0
     cost: float = 0.0
-    latency_s: float = 0.0
+    latency_s: float = 0.0  # LLM time as originally measured, cached or not
+    live_s: float = 0.0  # LLM time actually spent in this process
 
     def add(self, r: LLMResult) -> None:
         self.calls += 1
@@ -55,9 +56,11 @@ class Usage:
         self.output_tokens += r.output_tokens
         self.cost += r.cost
         self.latency_s += r.latency_s
+        if not r.cached:
+            self.live_s += r.latency_s
 
     def merge(self, other: "Usage") -> None:
-        for k in ("calls", "input_tokens", "output_tokens", "cost", "latency_s"):
+        for k in ("calls", "input_tokens", "output_tokens", "cost", "latency_s", "live_s"):
             setattr(self, k, getattr(self, k) + getattr(other, k))
 
     def to_dict(self) -> dict:
@@ -84,18 +87,44 @@ def known_model(model: str) -> bool:
     return model in _pricing()
 
 
+# Some hosted models reason before answering and bill those tokens against
+# max_tokens, which can leave the visible reply empty. Per family: turn
+# reasoning off where the endpoint allows it, otherwise keep effort low and
+# reserve headroom so `max_tokens` keeps meaning "length of the answer".
+REASONING_HEADROOM = 2048
+
+
+def _reasoning_options(model: str, effort: str | None = None) -> tuple[dict | None, int]:
+    if effort and model.startswith("anthropic/"):
+        return {"effort": effort}, REASONING_HEADROOM
+    if model.startswith("anthropic/") and "haiku" in model:
+        return {"enabled": False}, 0
+    if model.startswith("anthropic/"):
+        return {"effort": "low"}, REASONING_HEADROOM
+    return None, 0
+
+
 @lru_cache(maxsize=16)
-def chat_model(model: str, temperature: float = 0.0, max_tokens: int = 1024) -> ChatOpenAI:
+def chat_model(model: str, temperature: float = 0.0, max_tokens: int = 1024, effort: str | None = None) -> ChatOpenAI:
     if not settings.openrouter_api_key:
         raise RuntimeError("OPENROUTER_API_KEY is not set (see .env.example)")
+    reasoning, headroom = _reasoning_options(model, effort)
+    extra: dict = {}
+    if reasoning:
+        extra["reasoning"] = reasoning
+    if not model.startswith("anthropic/"):
+        # Open-weight models are served by many OpenRouter providers with very
+        # different queueing; routing by latency cut p50 from ~4s to <1s.
+        extra["provider"] = {"sort": "latency"}
     return ChatOpenAI(
         model=model,
         api_key=settings.openrouter_api_key,
         base_url=settings.openrouter_base_url,
         temperature=temperature,
-        max_tokens=max_tokens,
+        max_tokens=max_tokens + headroom,
         max_retries=4,
         timeout=180,
+        extra_body=extra or None,
     )
 
 
@@ -111,8 +140,9 @@ class LLMClient:
         self._cache_dir = settings.cache_dir / "llm"
         self._cache_dir.mkdir(parents=True, exist_ok=True)
 
-    def _key(self, model, messages, temperature, max_tokens) -> str:
-        blob = json.dumps([model, messages, temperature, max_tokens], sort_keys=True)
+    def _key(self, model, messages, temperature, max_tokens, effort=None) -> str:
+        parts = [model, messages, temperature, max_tokens] + ([effort] if effort else [])
+        blob = json.dumps(parts, sort_keys=True)
         return hashlib.sha256(blob.encode()).hexdigest()
 
     def chat(
@@ -121,11 +151,14 @@ class LLMClient:
         model: str,
         temperature: float = 0.0,
         max_tokens: int = 1024,
+        effort: str | None = None,
     ) -> LLMResult:
-        key = self._key(model, messages, temperature, max_tokens)
+        """`effort` opts a reasoning-capable model into reasoning for this call."""
+        key = self._key(model, messages, temperature, max_tokens, effort)
         path = self._cache_dir / f"{key}.json"
-        if self.use_cache and path.exists():
-            r = LLMResult(**json.loads(path.read_text()))
+        cached = LLMResult(**json.loads(path.read_text())) if self.use_cache and path.exists() else None
+        if cached is not None and cached.text:
+            r = cached
             r.cached = True
             with self._lock:
                 self.usage.add(r)
@@ -136,7 +169,9 @@ class LLMClient:
 
         lc_messages = [_ROLE[m["role"]](content=m["content"]) for m in messages]
         t0 = time.perf_counter()
-        msg = chat_model(model, temperature, max_tokens).invoke(lc_messages)
+        msg = chat_model(model, temperature, max_tokens, effort).invoke(lc_messages)
+        if not msg.content:  # reasoning consumed the budget; retry once with more room
+            msg = chat_model(model, temperature, max_tokens * 4, effort).invoke(lc_messages)
         latency = time.perf_counter() - t0
 
         um = msg.usage_metadata or {}
@@ -150,7 +185,7 @@ class LLMClient:
             cost=in_tok * p_in + out_tok * p_out,
             latency_s=latency,
         )
-        if self.use_cache:
+        if self.use_cache and r.text:
             path.write_text(json.dumps(asdict(r)))
         with self._lock:
             self.usage.add(r)

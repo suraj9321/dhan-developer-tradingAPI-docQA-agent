@@ -1,0 +1,35 @@
+{
+  "n": 40,
+  "label_status": [
+    "draft"
+  ],
+  "correct": {
+    "agreement": 0.975,
+    "kappa": 0.894736842105263,
+    "label_positive_rate": 0.875,
+    "confusion(label,judge)": {
+      "00": 5,
+      "10": 1,
+      "11": 34
+    }
+  },
+  "faithful": {
+    "agreement": 1.0,
+    "kappa": 1.0,
+    "label_positive_rate": 0.975,
+    "confusion(label,judge)": {
+      "00": 1,
+      "11": 39
+    }
+  },
+  "disagreements": [
+    {
+      "qid": "q0130",
+      "dim": "correct",
+      "label": 1,
+      "judge": 0,
+      "judge_reason": "The answer omits Forever Order from the categories, so it is incomplete against the reference, but every claim it makes is supported by the excerpts."
+    }
+  ],
+  "judge_usd": 0.13894199999999995
+}

@@ -1,0 +1,31 @@
+{
+  "baseline": {
+    "name": "baseline",
+    "system": "baseline",
+    "mode": "vector",
+    "chunk": 500,
+    "embed": "BAAI/bge-small-en-v1.5",
+    "answer_model": "meta-llama/llama-3.3-70b-instruct",
+    "n": 170,
+    "recall@5": 0.83,
+    "hit@5_pooled": 0.9533333333333334,
+    "mrr": 0.8087777777777777,
+    "correct": 0.8466666666666667,
+    "faithful": 0.9310344827586207,
+    "refusal_acc": 1.0,
+    "false_refusal": 0.03333333333333333,
+    "p50_s": 0.540144666476408,
+    "p95_s": 2.1889363437163447,
+    "usd_per_1k": 0.30463788235294126,
+    "tokens_in_avg": 1270.3058823529411,
+    "judge_usd": 0.47387200000000024,
+    "judge_unparsed": 0,
+    "correct_by_type": {
+      "disambiguation": 0.875,
+      "exact_fact": 0.936,
+      "lookup": 0.808,
+      "multi_step": 0.684
+    },
+    "wall_s": 30.89417600631714
+  }
+}

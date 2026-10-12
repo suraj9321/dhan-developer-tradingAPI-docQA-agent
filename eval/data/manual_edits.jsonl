@@ -1,0 +1,5 @@
+{"qid": "q0034", "action": "retype", "type": "lookup", "note": "no competing API page; tests lookup, not disambiguation"}
+{"qid": "q0184", "action": "drop", "note": "asks for an incidental constant inside example code"}
+{"qid": "q0102", "action": "drop", "note": "answer is an example of an example; not a realistic developer question"}
+{"qid": "q0071", "action": "drop", "note": "ambiguous: 'the SDK' matches two documented SDK styles with different method names"}
+{"qid": "q0081", "action": "drop", "note": "ambiguous: 'the SDK' matches two documented SDK styles with different method names"}

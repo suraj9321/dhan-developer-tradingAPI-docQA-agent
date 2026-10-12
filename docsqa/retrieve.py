@@ -11,6 +11,7 @@ live on unrelated scales; ranks are comparable without any tuning.
 
 from __future__ import annotations
 
+import threading
 from dataclasses import dataclass
 from functools import lru_cache
 
@@ -18,6 +19,7 @@ from rank_bm25 import BM25Okapi
 
 from docsqa import store
 from docsqa.config import settings
+from docsqa.embed import _LOCK as EMBED_LOCK
 from docsqa.embed import get_embedder
 from docsqa.ingest.chunk import Chunk, bm25_tokens, chunks_path, load_chunks
 
@@ -48,19 +50,32 @@ def rrf_merge(rankings: list[list[str]], k: int = 60) -> list[tuple[str, float]]
     return sorted(scores.items(), key=lambda kv: kv[1], reverse=True)
 
 
-@lru_cache(maxsize=8)
+_CORPUS_LOCK = threading.Lock()
+
+
 def _corpus(chunk_tokens: int) -> tuple[list[Chunk], BM25Okapi]:
+    with _CORPUS_LOCK:
+        return _load_corpus(chunk_tokens)
+
+
+@lru_cache(maxsize=8)
+def _load_corpus(chunk_tokens: int) -> tuple[list[Chunk], BM25Okapi]:
     chunks = load_chunks(chunks_path(settings.processed_dir, chunk_tokens))
     return chunks, BM25Okapi([bm25_tokens(c.text) for c in chunks])
 
 
 @lru_cache(maxsize=1)
-def _cross_encoder():
+def _load_cross_encoder():
     from sentence_transformers import CrossEncoder
 
     from docsqa.embed import best_device
 
     return CrossEncoder(settings.rerank_model, device=best_device())
+
+
+def _cross_encoder():
+    with EMBED_LOCK:
+        return _load_cross_encoder()
 
 
 class Retriever:
@@ -105,6 +120,7 @@ class Retriever:
         if mode == "hybrid":
             return self._hybrid(query, k)
         cands = self._hybrid(query, max(k, self.cfg.candidates))
-        scores = _cross_encoder().predict([(query, h.chunk.text) for h in cands])
+        with EMBED_LOCK:
+            scores = _cross_encoder().predict([(query, h.chunk.text) for h in cands], show_progress_bar=False)
         ranked = sorted(zip(cands, scores), key=lambda t: float(t[1]), reverse=True)[:k]
         return [Hit(h.chunk, float(s)) for h, s in ranked]

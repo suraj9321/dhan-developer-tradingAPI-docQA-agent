@@ -2,7 +2,9 @@
 
 Ask a question about the DhanHQ API and get an answer that cites the exact documentation passages it came from, or an explicit "I don't know" when the docs don't cover it. The interesting part is not the chatbot. It is the **evaluation harness**, which measures every design decision (chunking, hybrid search, reranking, fine-tuning, long context vs. RAG, an agentic self-check) on the same question set, with confidence intervals.
 
-<!-- demo GIF goes here -->
+![DocsQA answering "What values can productType take when placing an order?" with cited sources](docs/images/app-answer.png)
+
+*The agent pipeline answering from the Indian Trading API docs, with each `[n]` citation linked to the exact passage, plus latency, token and cost readouts.*
 
 **Headline results** (150 answerable + 20 unanswerable questions; open-weight Llama 3.3 70B answers):
 

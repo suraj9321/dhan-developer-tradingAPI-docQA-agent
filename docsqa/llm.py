@@ -49,6 +49,7 @@ class Usage:
     cost: float = 0.0
     latency_s: float = 0.0  # LLM time as originally measured, cached or not
     live_s: float = 0.0  # LLM time actually spent in this process
+    live_cost: float = 0.0  # dollars actually billed in this process (budget guard)
 
     def add(self, r: LLMResult) -> None:
         self.calls += 1
@@ -58,9 +59,10 @@ class Usage:
         self.latency_s += r.latency_s
         if not r.cached:
             self.live_s += r.latency_s
+            self.live_cost += r.cost
 
     def merge(self, other: "Usage") -> None:
-        for k in ("calls", "input_tokens", "output_tokens", "cost", "latency_s", "live_s"):
+        for k in ("calls", "input_tokens", "output_tokens", "cost", "latency_s", "live_s", "live_cost"):
             setattr(self, k, getattr(self, k) + getattr(other, k))
 
     def to_dict(self) -> dict:
@@ -104,18 +106,29 @@ def _reasoning_options(model: str, effort: str | None = None) -> tuple[dict | No
     return None, 0
 
 
-@lru_cache(maxsize=16)
-def chat_model(model: str, temperature: float = 0.0, max_tokens: int = 1024, effort: str | None = None) -> ChatOpenAI:
+@lru_cache(maxsize=32)
+def chat_model(
+    model: str,
+    temperature: float = 0.0,
+    max_tokens: int = 1024,
+    effort: str | None = None,
+    provider: str | None = None,
+) -> ChatOpenAI:
     if not settings.openrouter_api_key:
         raise RuntimeError("OPENROUTER_API_KEY is not set (see .env.example)")
     reasoning, headroom = _reasoning_options(model, effort)
     extra: dict = {}
     if reasoning:
         extra["reasoning"] = reasoning
-    if not model.startswith("anthropic/"):
-        # Open-weight models are served by many OpenRouter providers with very
-        # different queueing; routing by latency cut p50 from ~4s to <1s.
-        extra["provider"] = {"sort": "latency"}
+    if provider:
+        extra["provider"] = json.loads(provider)
+    elif not model.startswith("anthropic/"):
+        # Open-weight models are served by many OpenRouter providers that
+        # differ in price (up to 6x), latency and real context limits.
+        extra["provider"] = {"sort": settings.provider_sort}
+    # Ask OpenRouter for the billed cost of each call; the provider that
+    # served it may charge more than the model's list price.
+    extra["usage"] = {"include": True}
     return ChatOpenAI(
         model=model,
         api_key=settings.openrouter_api_key,
@@ -152,8 +165,11 @@ class LLMClient:
         temperature: float = 0.0,
         max_tokens: int = 1024,
         effort: str | None = None,
+        provider: dict | None = None,
     ) -> LLMResult:
-        """`effort` opts a reasoning-capable model into reasoning for this call."""
+        """`effort` opts a reasoning-capable model into reasoning for this call;
+        `provider` overrides OpenRouter provider routing for this call."""
+        prov = json.dumps(provider, sort_keys=True) if provider else None
         key = self._key(model, messages, temperature, max_tokens, effort)
         path = self._cache_dir / f"{key}.json"
         cached = LLMResult(**json.loads(path.read_text())) if self.use_cache and path.exists() else None
@@ -164,25 +180,28 @@ class LLMClient:
                 self.usage.add(r)
             return r
 
-        if self.max_cost is not None and self.usage.cost >= self.max_cost:
-            raise BudgetExceeded(f"spent ${self.usage.cost:.2f} of ${self.max_cost:.2f} budget")
+        if self.max_cost is not None and self.usage.live_cost >= self.max_cost:
+            raise BudgetExceeded(f"spent ${self.usage.live_cost:.2f} of ${self.max_cost:.2f} budget")
 
         lc_messages = [_ROLE[m["role"]](content=m["content"]) for m in messages]
         t0 = time.perf_counter()
-        msg = chat_model(model, temperature, max_tokens, effort).invoke(lc_messages)
+        msg = chat_model(model, temperature, max_tokens, effort, prov).invoke(lc_messages)
         if not msg.content:  # reasoning consumed the budget; retry once with more room
-            msg = chat_model(model, temperature, max_tokens * 4, effort).invoke(lc_messages)
+            msg = chat_model(model, temperature, max_tokens * 4, effort, prov).invoke(lc_messages)
         latency = time.perf_counter() - t0
 
         um = msg.usage_metadata or {}
         in_tok, out_tok = um.get("input_tokens", 0), um.get("output_tokens", 0)
-        p_in, p_out = _pricing().get(model, (0.0, 0.0))
+        billed = (msg.response_metadata.get("token_usage") or {}).get("cost")
+        if billed is None:  # fall back to list price
+            p_in, p_out = _pricing().get(model, (0.0, 0.0))
+            billed = in_tok * p_in + out_tok * p_out
         r = LLMResult(
             text=msg.content if isinstance(msg.content, str) else str(msg.content),
             model=model,
             input_tokens=in_tok,
             output_tokens=out_tok,
-            cost=in_tok * p_in + out_tok * p_out,
+            cost=float(billed),
             latency_s=latency,
         )
         if self.use_cache and r.text:

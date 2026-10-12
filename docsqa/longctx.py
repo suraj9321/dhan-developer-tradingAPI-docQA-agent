@@ -43,6 +43,17 @@ def _sections_as_chunks() -> list[Chunk]:
     return chunks
 
 
+# With ~110K tokens between the system prompt and the question, the model
+# drops the citation rule entirely (no [n] markers in smoke tests). Restating
+# the rules next to the question restores them; the RAG prompt is short
+# enough not to need this.
+REMINDER = (
+    "Answer using only the excerpts above. End every factual sentence with the "
+    "number(s) of the excerpt(s) that support it, like [12] or [3][40]. "
+    f"If the excerpts do not contain the answer, reply with exactly: {REFUSAL}"
+)
+
+
 class LongContextPipeline:
     def __init__(self, llm: LLMClient | None = None, model: str | None = None):
         self.llm = llm or LLMClient()
@@ -59,10 +70,13 @@ class LongContextPipeline:
                 # Document first, question last: the instruction-following
                 # position for long prompts, and a stable prefix for any
                 # provider-side prompt caching.
-                {"role": "user", "content": f"Documentation excerpts:\n\n{self.context}\n\nQuestion: {question}"},
+                {"role": "user", "content": f"Documentation excerpts:\n\n{self.context}\n\nQuestion: {question}\n\n{REMINDER}"},
             ],
             model=self.model,
             max_tokens=700,
+            # Price-sorted with fallbacks: several providers list 128K but
+            # reject long inputs; failures fall through to the next provider.
+            provider={"sort": "price", "allow_fallbacks": True},
         )
         usage.add(r)
         text = r.text.strip()

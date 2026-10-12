@@ -33,6 +33,7 @@ class RetrieverConfig:
     embed_model: str = settings.embed_model
     k: int = 5
     candidates: int = 20  # depth fed to RRF / the reranker
+    rerank_model: str = settings.rerank_model
     rrf_k: int = 60  # standard RRF constant from Cormack et al. (2009)
 
 
@@ -64,18 +65,18 @@ def _load_corpus(chunk_tokens: int) -> tuple[list[Chunk], BM25Okapi]:
     return chunks, BM25Okapi([bm25_tokens(c.text) for c in chunks])
 
 
-@lru_cache(maxsize=1)
-def _load_cross_encoder():
+@lru_cache(maxsize=2)
+def _load_cross_encoder(name: str):
     from sentence_transformers import CrossEncoder
 
     from docsqa.embed import best_device
 
-    return CrossEncoder(settings.rerank_model, device=best_device())
+    return CrossEncoder(name, device=best_device())
 
 
-def _cross_encoder():
+def _cross_encoder(name: str):
     with EMBED_LOCK:
-        return _load_cross_encoder()
+        return _load_cross_encoder(name)
 
 
 class Retriever:
@@ -121,6 +122,6 @@ class Retriever:
             return self._hybrid(query, k)
         cands = self._hybrid(query, max(k, self.cfg.candidates))
         with EMBED_LOCK:
-            scores = _cross_encoder().predict([(query, h.chunk.text) for h in cands], show_progress_bar=False)
+            scores = _cross_encoder(self.cfg.rerank_model).predict([(query, h.chunk.text) for h in cands], show_progress_bar=False)
         ranked = sorted(zip(cands, scores), key=lambda t: float(t[1]), reverse=True)[:k]
         return [Hit(h.chunk, float(s)) for h, s in ranked]

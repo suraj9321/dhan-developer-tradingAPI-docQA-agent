@@ -18,6 +18,11 @@ class Settings(BaseSettings):
     judge_model: str = "anthropic/claude-sonnet-5.5"
     gen_model: str = "anthropic/claude-haiku-5.5"
 
+    # OpenRouter provider routing for open-weight models: "price" or "latency".
+    # Latency routing measured p50 ~0.5s but lands on providers costing up to
+    # 6x the cheapest one; price routing is the default.
+    provider_sort: str = "price"
+
     qdrant_url: str = "http://localhost:6333"
     embed_model: str = "BAAI/bge-small-en-v1.5"
     rerank_model: str = "cross-encoder/ms-marco-MiniLM-L-6-v2"

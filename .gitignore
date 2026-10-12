@@ -9,3 +9,4 @@ models/
 qdrant_storage/
 eval/results/runs/
 .DS_Store
+finetune/data/
